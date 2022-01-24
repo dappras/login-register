@@ -1,11 +1,18 @@
-import './App.css';
+import React from 'react';
+import {lastIndexOf, substr} from '@7urtle/lambda';
+import {BrowserRouter as Router} from 'react-router-dom';
+import Routes from './Routes';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello it's new project</h1>
-    </div>
-  );
-}
+const getBasename = path => substr(lastIndexOf('/')(path))(0)(path);
+
+const App = () => {
+    return (
+        <div>
+          <Router basename={getBasename(window.location.pathname)}>
+            <Routes />
+          </Router>
+        </div>
+    );
+};
 
 export default App;
